@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="paletteColor1">#8F87F1</color>
+    <color name="paletteColor2">#C68EFD</color>
+    <color name="paletteColor3">#E9A5F1</color>
+    <color name="paletteColor4">#FED2E2</color>
+
+    <color name="defaultBtnColor">#3A3A3A</color>
 </resources>
