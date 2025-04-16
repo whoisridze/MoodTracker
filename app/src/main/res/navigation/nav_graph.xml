@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/dashboardFragment">
@@ -10,6 +9,12 @@
         android:name="com.whoisridze.moodtracker.ui.dashboard.DashboardFragment"
         android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/logMoodFragment"
+        android:name="com.whoisridze.moodtracker.ui.dashboard.LogMoodFragment"
+        android:label="Log Mood"
+        tools:layout="@layout/fragment_log_mood" />
 
     <fragment
         android:id="@+id/statsFragment"
@@ -28,5 +33,4 @@
         android:name="com.whoisridze.moodtracker.ui.settings.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
-
 </navigation>
