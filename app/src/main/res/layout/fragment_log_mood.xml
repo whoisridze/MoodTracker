@@ -22,7 +22,7 @@
         android:id="@+id/tvPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How are you feeling?"
+        android:text="@string/tvPromptText"
         android:textSize="18sp"
         android:textColor="@color/white"
         android:layout_marginTop="24dp"

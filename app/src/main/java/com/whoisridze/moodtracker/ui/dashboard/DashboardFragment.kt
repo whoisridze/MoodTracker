@@ -1,4 +1,3 @@
-// DashboardFragment.kt
 package com.whoisridze.moodtracker.ui.dashboard
 
 import android.os.Bundle

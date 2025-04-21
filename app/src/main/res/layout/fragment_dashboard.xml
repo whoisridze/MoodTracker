@@ -11,7 +11,7 @@
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome Back"
+        android:text="@string/tvWelcomeText"
         android:textSize="24sp"
         android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
@@ -66,7 +66,7 @@
                 android:id="@+id/tvStreakLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Streak"
+                android:text="@string/tvStreakText"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -74,7 +74,7 @@
                 android:id="@+id/tvStreakValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="@string/tvStreakValue"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>
@@ -95,7 +95,7 @@
                 android:id="@+id/tvAvgMoodLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Avg Mood"
+                android:text="@string/tvAvgMoodText"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -103,7 +103,7 @@
                 android:id="@+id/tvAvgMoodValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="neutral"
+                android:text="@string/tvAvgMoodValue"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>

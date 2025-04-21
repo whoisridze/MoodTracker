@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MoodTracker</string>
+    <string name="tvWelcomeText">Welcome Back</string>
+    <string name="tvStreakText">Streak</string>
+    <string name="tvStreakValue">0</string>
+    <string name="tvAvgMoodText">Avg Mood</string>
+    <string name="tvAvgMoodValue">neutral</string>
+    <string name="tvPromptText">How are you feeling?</string>
 </resources>
