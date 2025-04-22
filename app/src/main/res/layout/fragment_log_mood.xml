@@ -2,88 +2,209 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@drawable/bg_gradient">
 
-    <TextView
-        android:id="@+id/tvSelectedDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0" />
-
-    <TextView
-        android:id="@+id/tvPrompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tvPromptText"
-        android:textSize="18sp"
-        android:textColor="@color/white"
+    <ImageButton
+        android:id="@+id/btnClose"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/tvSelectedDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0" />
-
-    <TextView
-        android:id="@+id/emojiHappy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="😊"
-        android:textSize="32sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvPrompt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/emojiNeutral"
-        app:layout_constraintHorizontal_chainStyle="spread_inside" />
-
-    <TextView
-        android:id="@+id/emojiNeutral"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="😐"
-        android:textSize="32sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvPrompt"
-        app:layout_constraintStart_toEndOf="@id/emojiHappy"
-        app:layout_constraintEnd_toStartOf="@id/emojiSad" />
-
-    <TextView
-        android:id="@+id/emojiSad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="😞"
-        android:textSize="32sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvPrompt"
-        app:layout_constraintStart_toEndOf="@id/emojiNeutral"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/etNote"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Add a note"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="12dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/emojiHappy"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_close"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/etNote"
+        android:text="@string/tvTitleText"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.40" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dateTimeContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/ivCalendar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/tvDateText"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/ivCalendar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivClock"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_clock"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTime"
+            app:layout_constraintStart_toEndOf="@+id/tvDate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/tvTimeValue"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/ivClock"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/btnMoodAwful"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_mood_awful"
+        app:layout_constraintEnd_toStartOf="@+id/btnMoodBad"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTimeContainer" />
+
+    <ImageButton
+        android:id="@+id/btnMoodBad"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_mood_bad"
+        app:layout_constraintEnd_toStartOf="@+id/btnMoodNeutral"
+        app:layout_constraintStart_toEndOf="@id/btnMoodAwful"
+        app:layout_constraintTop_toTopOf="@id/btnMoodAwful" />
+
+    <ImageButton
+        android:id="@+id/btnMoodNeutral"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_mood_neutral"
+        app:layout_constraintEnd_toStartOf="@+id/btnMoodGood"
+        app:layout_constraintStart_toEndOf="@id/btnMoodBad"
+        app:layout_constraintTop_toTopOf="@id/btnMoodAwful" />
+
+    <ImageButton
+        android:id="@+id/btnMoodGood"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_mood_good"
+        app:layout_constraintEnd_toStartOf="@+id/btnMoodGreat"
+        app:layout_constraintStart_toEndOf="@id/btnMoodNeutral"
+        app:layout_constraintTop_toTopOf="@id/btnMoodAwful" />
+
+    <ImageButton
+        android:id="@+id/btnMoodGreat"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_mood_great"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnMoodGood"
+        app:layout_constraintTop_toTopOf="@id/btnMoodAwful" />
+
+    <TextView
+        android:id="@+id/tvMoodAwful"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvMoodAwfulText"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnMoodAwful"
+        app:layout_constraintStart_toStartOf="@+id/btnMoodAwful"
+        app:layout_constraintEnd_toEndOf="@+id/btnMoodAwful" />
+
+    <TextView
+        android:id="@+id/tvMoodBad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvMoodBadText"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnMoodBad"
+        app:layout_constraintStart_toStartOf="@+id/btnMoodBad"
+        app:layout_constraintEnd_toEndOf="@+id/btnMoodBad" />
+
+    <TextView
+        android:id="@+id/tvMoodNeutral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvMoodNeutralText"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnMoodNeutral"
+        app:layout_constraintStart_toStartOf="@+id/btnMoodNeutral"
+        app:layout_constraintEnd_toEndOf="@+id/btnMoodNeutral" />
+
+    <TextView
+        android:id="@+id/tvMoodGood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvMoodGoodText"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnMoodGood"
+        app:layout_constraintStart_toStartOf="@+id/btnMoodGood"
+        app:layout_constraintEnd_toEndOf="@+id/btnMoodGood" />
+
+    <TextView
+        android:id="@+id/tvMoodGreat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvMoodGreatText"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnMoodGreat"
+        app:layout_constraintStart_toStartOf="@+id/btnMoodGreat"
+        app:layout_constraintEnd_toEndOf="@+id/btnMoodGreat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

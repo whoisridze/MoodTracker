@@ -6,4 +6,12 @@
     <string name="tvAvgMoodText">Avg Mood</string>
     <string name="tvAvgMoodValue">neutral</string>
     <string name="tvPromptText">How are you feeling?</string>
+    <string name="tvTitleText">How are you?</string>
+    <string name="tvDateText">Today, March 22</string>
+    <string name="tvTimeValue">14:30</string>
+    <string name="tvMoodAwfulText">Awful</string>
+    <string name="tvMoodBadText">Bad</string>
+    <string name="tvMoodNeutralText">Neutral</string>
+    <string name="tvMoodGoodText">Good</string>
+    <string name="tvMoodGreatText">Great</string>
 </resources>
