@@ -5,29 +5,28 @@
     android:viewportWidth="64"
     android:viewportHeight="64">
 
-  <path
-      android:pathData="
+    <path android:pathData="
             M32,2
             C15.428,2 2,15.428 2,32
             C2,48.572 15.428,62 32,62
             C48.572,62 62,48.572 62,32
             C62,15.428 48.572,2 32,2
             Z">
-    <aapt:attr name="android:fillColor">
-      <gradient
-          android:type="radial"
-          android:centerX="32"
-          android:centerY="32"
-          android:gradientRadius="30"
-          android:startColor="#FFB84D"
-          android:centerColor="#FFA500"
-          android:endColor="#E08000" />
-    </aapt:attr>
-  </path>
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerColor="#FFA500"
+                android:centerX="32"
+                android:centerY="32"
+                android:endColor="#E08000"
+                android:gradientRadius="30"
+                android:startColor="#FFB84D"
+                android:type="radial" />
+        </aapt:attr>
+    </path>
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="
             M32,2
             C15.428,2 2,15.428 2,32
             s13.428,30 30,30
@@ -43,17 +42,17 @@
             c0,6.353 6.393,7.996 9.708,4.937
             C53.251,52.488 43.431,59.5 32,59.5" />
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="M15.498,35m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="M15.498,35m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="M38.498,35m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="M38.498,35m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="
             M21.992,21.58
             c0.541,-0.469 -0.971,-2.061 -1.414,-1.674
             a14.23,14.23 0,0 1,-11.693 3.133

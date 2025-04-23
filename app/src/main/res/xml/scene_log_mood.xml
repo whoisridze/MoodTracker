@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start" />
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint android:id="@+id/ivSelectedMood">
+            <Layout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.35" />
+            <Transform
+                android:scaleX="1.2"
+                android:scaleY="1.2" />
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/btnMoodAwful"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/btnMoodBad"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/btnMoodNeutral"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/btnMoodGood"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/btnMoodGreat"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/tvMoodAwful"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/tvMoodBad"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/tvMoodNeutral"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/tvMoodGood"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/tvMoodGreat"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/tvTitle"
+            android:visibility="gone"
+            app:visibilityMode="ignore" />
+
+        <Constraint android:id="@+id/tvHeaderSelected">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvSelectedMoodLabel">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/etReason">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnSend">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/dateTimeContainer">
+            <Layout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSelectedMoodLabel" />
+        </Constraint>
+
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@id/start"
+        app:duration="450"
+        app:motionInterpolator="easeInOut">
+
+        <OnSwipe
+            app:dragDirection="dragDown"
+            app:touchAnchorId="@+id/ivSelectedMood"
+            app:touchAnchorSide="bottom" />
+    </Transition>
+</MotionScene>

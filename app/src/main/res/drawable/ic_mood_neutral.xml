@@ -5,27 +5,26 @@
     android:viewportWidth="64"
     android:viewportHeight="64">
 
-  <path
-      android:pathData="
+    <path android:pathData="
             M32,2
             A30,30 0 1,1 31.999,62
             A30,30 0 1,1 32,2
             Z">
-    <aapt:attr name="android:fillColor">
-      <gradient
-          android:type="radial"
-          android:centerX="32"
-          android:centerY="32"
-          android:gradientRadius="30"
-          android:startColor="#A7DAEE"
-          android:centerColor="#87CEEB"
-          android:endColor="#5EAFD3" />
-    </aapt:attr>
-  </path>
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerColor="#87CEEB"
+                android:centerX="32"
+                android:centerY="32"
+                android:endColor="#5EAFD3"
+                android:gradientRadius="30"
+                android:startColor="#A7DAEE"
+                android:type="radial" />
+        </aapt:attr>
+    </path>
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="
             M32,2
             C15.432,2 2,15.432 2,32
             s13.432,30 30,30
@@ -38,16 +37,16 @@
             S47.163,59.5 32,59.5
             Z" />
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="M20.5,27.592m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="M20.5,27.592m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="M43.498,27.592m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="M43.498,27.592m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="M38.871,44H25.127c-1.504,0 -1.504,4 0,4h13.744c1.504,0 1.504,-4 0,-4" />
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="M38.871,44H25.127c-1.504,0 -1.504,4 0,4h13.744c1.504,0 1.504,-4 0,-4" />
 
 </vector>

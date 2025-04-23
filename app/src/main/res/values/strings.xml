@@ -15,9 +15,12 @@
     <string name="tvMoodNeutralText">Neutral</string>
     <string name="tvMoodGoodText">Good</string>
     <string name="tvMoodGreatText">Great</string>
+    <string name="tvHeaderSelected">Selected mood</string>
+
 
     <string name="ivCalendarDesc">calendarIcon</string>
     <string name="ivClockDesc">clockIcon</string>
+    <string name="ivSelectedMoodDesc">moodIcon</string>
 
     <string name="awfulMoodButton">awfulMoodButton</string>
     <string name="badMoodButton">badMoodButton</string>
@@ -25,4 +28,8 @@
     <string name="goodMoodButton">goodMoodButton</string>
     <string name="greatMoodButton">greatMoodButton</string>
     <string name="closeButtonDesc">closeButtonDesc</string>
+    <string name="sendButtonDesc">sendButtonDesc</string>
+
+    <string name="etReasonHint">Add a reason</string>
+    <string name="tvSelectedMoodText">MoodName</string>
 </resources>

@@ -1,34 +1,33 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:tools="http://schemas.android.com/tools"
     android:width="40dp"
     android:height="40dp"
     android:viewportWidth="64"
     android:viewportHeight="64">
 
-  <path
-      android:pathData="
+    <path android:pathData="
             M32,2
             C15.43,2 2,15.43 2,32
             s13.43,30 30,30
             30,-13.43 30,-30
             S48.57,2 32,2
             Z">
-    <aapt:attr name="android:fillColor">
-      <gradient
-          android:type="radial"
-          android:centerX="32"
-          android:centerY="32"
-          android:gradientRadius="30"
-          android:startColor="#E06060"
-          android:centerColor="#D04040"
-          android:endColor="#B02020" />
-    </aapt:attr>
-  </path>
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerColor="#D04040"
+                android:centerX="32"
+                android:centerY="32"
+                android:endColor="#B02020"
+                android:gradientRadius="30"
+                android:startColor="#E06060"
+                android:type="radial" />
+        </aapt:attr>
+    </path>
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="
             M32,2
             C15.43,2 2,15.43 2,32
             s13.43,30 30,30
@@ -40,9 +39,9 @@
             S59.5,16.836 59.5,32
             S47.164,59.5 32,59.5" />
 
-  <path
-      android:fillColor="#3a3a3a"
-      android:pathData="
+    <path
+        android:fillColor="#3a3a3a"
+        android:pathData="
             M51.5,23.527
             c0.703,-0.135 0.193,-2.27 -0.385,-2.156
             c-4.17,0.748 -8.457,-0.4 -11.693,-3.133
@@ -80,6 +79,6 @@
             S23.399,39.999 32,39.999
             s11.146,2.168 11.146,2.168
             c0.209,0.18 0.307,0.538 0.217,0.798"
-      tools:ignore="VectorPath" />
+        tools:ignore="VectorPath" />
 
 </vector>
