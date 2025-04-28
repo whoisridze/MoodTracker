@@ -16,7 +16,7 @@
     <string name="tvMoodGoodText">Good</string>
     <string name="tvMoodGreatText">Great</string>
     <string name="tvHeaderSelected">Selected mood</string>
-
+    <string name="tvDataManagement">Data Management</string>
 
     <string name="ivCalendarDesc">calendarIcon</string>
     <string name="ivClockDesc">clockIcon</string>
@@ -27,9 +27,19 @@
     <string name="neutralMoodButton">neutralMoodButton</string>
     <string name="goodMoodButton">goodMoodButton</string>
     <string name="greatMoodButton">greatMoodButton</string>
+    <string name="viewMoodDataButton">View Mood Data</string>
+    <string name="deleteMoodDataButton">Delete All Mood Data</string>
     <string name="closeButtonDesc">closeButtonDesc</string>
     <string name="sendButtonDesc">sendButtonDesc</string>
 
-    <string name="etReasonHint">Add a reason</string>
+    <string name="etReasonHint">Add a reason (optional)</string>
     <string name="tvSelectedMoodText">MoodName</string>
+
+    <string name="noDataFound">No mood data found</string>
+    <string name="dataDeleted">All mood data has been deleted</string>
+    <string name="confirmDelete">Are you sure you want to delete all mood data?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="moodData">Mood Data</string>
+    <string name="close">Close</string>
 </resources>

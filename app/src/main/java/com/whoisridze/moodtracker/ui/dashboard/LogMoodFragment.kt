@@ -12,8 +12,10 @@ import androidx.annotation.StringRes
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.whoisridze.moodtracker.R
+import com.whoisridze.moodtracker.data.repository.MoodRepositoryImpl
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -64,6 +66,7 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
     private lateinit var btnSend: ImageButton
     private lateinit var tvHeader: TextView
     private lateinit var tvLabel: TextView
+    private lateinit var viewModel: LogMoodViewModel
 
     private var selectedMood: Mood? = null
 
@@ -76,6 +79,10 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
         btnSend = view.findViewById(R.id.btnSend)
         tvHeader = view.findViewById(R.id.tvHeaderSelected)
         tvLabel = view.findViewById(R.id.tvSelectedMoodLabel)
+
+        val repository = MoodRepositoryImpl(requireContext())
+        val factory = LogMoodViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[LogMoodViewModel::class.java]
 
         fillDateTime(view)
         setupButtons(view)
@@ -151,7 +158,12 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
 
         btnSend.setOnClickListener {
             selectedMood?.let { m ->
-                // TODO: repository.save(m, etReason.text.toString()) in JSON
+                val date = LocalDate.now()
+                val time = LocalTime.now()
+                val moodType = m.name
+                val reason = etReason.text.toString().takeIf { it.isNotBlank() }
+
+                viewModel.saveMood(date, time, moodType, reason)
             }
             findNavController().navigateUp()
         }
