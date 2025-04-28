@@ -99,11 +99,5 @@
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@id/start"
         app:duration="450"
-        app:motionInterpolator="easeInOut">
-
-        <OnSwipe
-            app:dragDirection="dragDown"
-            app:touchAnchorId="@+id/ivSelectedMood"
-            app:touchAnchorSide="bottom" />
-    </Transition>
+        app:motionInterpolator="easeInOut" />
 </MotionScene>

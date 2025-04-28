@@ -32,24 +32,24 @@
         android:textSize="20sp"
         android:textStyle="normal"
         android:visibility="invisible"
-        app:layout_constraintTop_toTopOf="@+id/btnClose"
         app:layout_constraintBottom_toBottomOf="@+id/btnClose"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/btnClose" />
 
     <TextView
         android:id="@+id/tvSelectedMoodLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="@string/tvSelectedMoodText"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
         android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/ivSelectedMood"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivSelectedMood" />
 
     <ImageView
         android:id="@+id/ivSelectedMood"

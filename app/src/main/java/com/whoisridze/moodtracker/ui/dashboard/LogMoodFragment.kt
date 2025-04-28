@@ -80,34 +80,48 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
         fillDateTime(view)
         setupButtons(view)
         motion.setTransitionListener(object : MotionLayout.TransitionListener {
-            override fun onTransitionCompleted(
-                layout: MotionLayout, currentId: Int
-            ) {
+            override fun onTransitionCompleted(layout: MotionLayout, currentId: Int) {
+                val btnClose = view?.findViewById<ImageButton>(R.id.btnClose)
                 if (currentId == R.id.start) {
-                    Mood.entries.forEach { entry ->
-                        view.findViewById<ImageButton>(entry.btnId).alpha = 1f
-                    }
                     setLabelsVisible(true)
+
                     ivCenter.isVisible = false
                     etReason.isVisible = false
                     btnSend.isVisible = false
                     tvHeader.isVisible = false
                     tvLabel.isVisible = false
+
+                    Mood.entries.forEach { entry ->
+                        view?.findViewById<ImageButton>(entry.btnId)?.apply {
+                            alpha = 1f
+                            isEnabled = true
+                        }
+                    }
+
+                    motion.setBackgroundResource(R.drawable.bg_gradient)
+                    btnClose?.setImageResource(R.drawable.ic_close)
+                    btnClose?.contentDescription = getString(R.string.closeButtonDesc)
+
+                    selectedMood = null
+                } else if (currentId == R.id.end) {
+                    btnClose?.setImageResource(R.drawable.ic_arrow_back)
                 }
             }
 
             override fun onTransitionChange(
-                l: MotionLayout, startId: Int, endId: Int, progress: Float
+                l: MotionLayout,
+                startId: Int,
+                endId: Int,
+                progress: Float
             ) {
             }
 
-            override fun onTransitionStarted(
-                l: MotionLayout, startId: Int, endId: Int
-            ) {
-            }
-
+            override fun onTransitionStarted(l: MotionLayout, startId: Int, endId: Int) {}
             override fun onTransitionTrigger(
-                l: MotionLayout, triggerId: Int, pos: Boolean, v: Float
+                l: MotionLayout,
+                triggerId: Int,
+                pos: Boolean,
+                v: Float
             ) {
             }
         })
@@ -128,8 +142,11 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
         }
 
         root.findViewById<ImageButton>(R.id.btnClose).setOnClickListener {
-            if (motion.progress > 0f) motion.transitionToStart()
-            else findNavController().navigateUp()
+            if (motion.currentState == R.id.end) {
+                motion.transitionToStart()
+            } else {
+                findNavController().navigateUp()
+            }
         }
 
         btnSend.setOnClickListener {
