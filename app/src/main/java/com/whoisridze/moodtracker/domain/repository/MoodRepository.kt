@@ -1,6 +1,6 @@
 package com.whoisridze.moodtracker.domain.repository
 
-import com.whoisridze.moodtracker.data.model.MoodEntry
+import com.whoisridze.moodtracker.domain.model.MoodEntry
 
 interface MoodRepository {
     suspend fun saveMood(moodEntry: MoodEntry)

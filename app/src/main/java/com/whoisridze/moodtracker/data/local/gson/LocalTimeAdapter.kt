@@ -1,4 +1,4 @@
-package com.whoisridze.moodtracker.data.repository
+package com.whoisridze.moodtracker.data.local.gson
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer

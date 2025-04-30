@@ -4,7 +4,9 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.whoisridze.moodtracker.data.model.MoodEntry
+import com.whoisridze.moodtracker.data.local.gson.LocalDateAdapter
+import com.whoisridze.moodtracker.data.local.gson.LocalTimeAdapter
+import com.whoisridze.moodtracker.domain.model.MoodEntry
 import com.whoisridze.moodtracker.domain.repository.MoodRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

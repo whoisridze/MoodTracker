@@ -1,6 +1,5 @@
-package com.whoisridze.moodtracker.data.model
+package com.whoisridze.moodtracker.domain.model
 
-import com.whoisridze.moodtracker.domain.model.MoodValue
 import java.time.LocalDate
 import java.time.LocalTime
 

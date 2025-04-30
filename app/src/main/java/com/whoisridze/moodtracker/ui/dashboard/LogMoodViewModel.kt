@@ -2,7 +2,7 @@ package com.whoisridze.moodtracker.ui.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.whoisridze.moodtracker.data.model.MoodEntry
+import com.whoisridze.moodtracker.domain.model.MoodEntry
 import com.whoisridze.moodtracker.domain.model.MoodValue
 import com.whoisridze.moodtracker.domain.repository.MoodRepository
 import kotlinx.coroutines.launch
