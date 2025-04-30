@@ -3,11 +3,11 @@ package com.whoisridze.moodtracker.ui.settings
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.whoisridze.moodtracker.R
 import com.whoisridze.moodtracker.data.repository.MoodRepositoryImpl
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -27,7 +27,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun showJsonContents() {
-        CoroutineScope(Dispatchers.Main).launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             val repository = MoodRepositoryImpl(requireContext())
             val moods = withContext(Dispatchers.IO) {
                 repository.getMoods()

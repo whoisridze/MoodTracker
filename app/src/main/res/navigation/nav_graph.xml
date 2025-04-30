@@ -8,13 +8,30 @@
         android:id="@+id/dashboardFragment"
         android:name="com.whoisridze.moodtracker.ui.dashboard.DashboardFragment"
         android:label="Dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboardFragment_to_logMoodFragment"
+            app:destination="@id/logMoodFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/logMoodFragment"
         android:name="com.whoisridze.moodtracker.ui.dashboard.LogMoodFragment"
         android:label="Log Mood"
-        tools:layout="@layout/fragment_log_mood" />
+        tools:layout="@layout/fragment_log_mood">
+        <argument
+            android:name="selectedYear"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="selectedMonth"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="selectedDay"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 
     <fragment
         android:id="@+id/statsFragment"

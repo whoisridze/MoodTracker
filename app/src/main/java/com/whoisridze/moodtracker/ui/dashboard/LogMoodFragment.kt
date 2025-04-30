@@ -6,6 +6,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.whoisridze.moodtracker.R
 import com.whoisridze.moodtracker.data.repository.MoodRepositoryImpl
+import com.whoisridze.moodtracker.domain.model.MoodValue
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -69,6 +71,7 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
     private lateinit var viewModel: LogMoodViewModel
 
     private var selectedMood: Mood? = null
+    private lateinit var selectedDate: LocalDate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,7 +87,9 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
         val factory = LogMoodViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[LogMoodViewModel::class.java]
 
-        fillDateTime(view)
+        selectedDate = getSelectedDateFromArguments()
+
+        fillDateTime(view, selectedDate)
         setupButtons(view)
         motion.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionCompleted(layout: MotionLayout, currentId: Int) {
@@ -134,10 +139,22 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
         })
     }
 
-    private fun fillDateTime(root: View) {
-        root.findViewById<android.widget.TextView>(R.id.tvDate)
-            .text = LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMMM, yyyy"))
-        root.findViewById<android.widget.TextView>(R.id.tvTime)
+    private fun getSelectedDateFromArguments(): LocalDate {
+        val year = arguments?.getInt("selectedYear", -1) ?: -1
+        val month = arguments?.getInt("selectedMonth", -1) ?: -1
+        val day = arguments?.getInt("selectedDay", -1) ?: -1
+
+        return if (year > 0 && month >= 0 && day > 0) {
+            LocalDate.of(year, month + 1, day)
+        } else {
+            LocalDate.now()
+        }
+    }
+
+    private fun fillDateTime(root: View, date: LocalDate) {
+        root.findViewById<TextView>(R.id.tvDate)
+            .text = date.format(DateTimeFormatter.ofPattern("dd MMMM, yyyy"))
+        root.findViewById<TextView>(R.id.tvTime)
             .text = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))
     }
 
@@ -158,12 +175,13 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
 
         btnSend.setOnClickListener {
             selectedMood?.let { m ->
-                val date = LocalDate.now()
                 val time = LocalTime.now()
-                val moodType = m.name
+                val moodValue = MoodValue.valueOf(m.name)
                 val reason = etReason.text.toString().takeIf { it.isNotBlank() }
 
-                viewModel.saveMood(date, time, moodType, reason)
+                viewModel.saveMood(selectedDate, time, moodValue, reason)
+
+                Toast.makeText(requireContext(), "Saved!", Toast.LENGTH_SHORT).show()
             }
             findNavController().navigateUp()
         }

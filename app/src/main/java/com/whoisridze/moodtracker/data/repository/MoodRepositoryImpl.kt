@@ -21,6 +21,7 @@ class MoodRepositoryImpl(private val context: Context) : MoodRepository {
     override suspend fun saveMood(moodEntry: MoodEntry) {
         withContext(Dispatchers.IO) {
             val moods = getMoods().toMutableList()
+            moods.removeAll { it.date == moodEntry.date }
             moods.add(moodEntry)
             val json = gson.toJson(moods)
             context.openFileOutput(fileName, Context.MODE_PRIVATE).use {
