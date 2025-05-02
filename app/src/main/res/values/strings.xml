@@ -17,10 +17,13 @@
     <string name="tvMoodGreatText">Great</string>
     <string name="tvHeaderSelected">Selected mood</string>
     <string name="tvDataManagement">Data Management</string>
+    <string name="tvComingSoon">Coming Soon!</string>
+    <string name="tvUnderDevelopment">Social features are under development</string>
 
     <string name="ivCalendarDesc">calendarIcon</string>
     <string name="ivClockDesc">clockIcon</string>
     <string name="ivSelectedMoodDesc">moodIcon</string>
+    <string name="ivCatImageDesc">Cute cat image</string>
 
     <string name="awfulMoodButton">awfulMoodButton</string>
     <string name="badMoodButton">badMoodButton</string>
