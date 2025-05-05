@@ -25,6 +25,7 @@ class MoodRepositoryImpl(private val context: Context) : MoodRepository {
             val moods = getMoods().toMutableList()
             moods.removeAll { it.date == moodEntry.date }
             moods.add(moodEntry)
+            moods.sortBy { it.date }
             val json = gson.toJson(moods)
             context.openFileOutput(fileName, Context.MODE_PRIVATE).use {
                 it.write(json.toByteArray())

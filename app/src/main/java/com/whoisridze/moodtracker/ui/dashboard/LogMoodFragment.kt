@@ -15,6 +15,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.whoisridze.moodtracker.R
 import com.whoisridze.moodtracker.data.repository.MoodRepositoryImpl
 import com.whoisridze.moodtracker.domain.model.MoodValue
@@ -25,41 +27,16 @@ import java.time.format.DateTimeFormatter
 class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
 
     private enum class Mood(
-        @IdRes val btnId: Int,
         @DrawableRes val iconRes: Int,
+        @StringRes val labelRes: Int,
         @DrawableRes val bgRes: Int,
-        @StringRes val labelRes: Int
+        @IdRes val btnId: Int
     ) {
-        AWFUL(
-            R.id.btnMoodAwful,
-            R.drawable.ic_mood_awful,
-            R.drawable.bg_mood_awful,
-            R.string.tvMoodAwfulText
-        ),
-        BAD(
-            R.id.btnMoodBad,
-            R.drawable.ic_mood_bad,
-            R.drawable.bg_mood_bad,
-            R.string.tvMoodBadText
-        ),
-        NEUTRAL(
-            R.id.btnMoodNeutral,
-            R.drawable.ic_mood_neutral,
-            R.drawable.bg_mood_neutral,
-            R.string.tvMoodNeutralText
-        ),
-        GOOD(
-            R.id.btnMoodGood,
-            R.drawable.ic_mood_good,
-            R.drawable.bg_mood_good,
-            R.string.tvMoodGoodText
-        ),
-        GREAT(
-            R.id.btnMoodGreat,
-            R.drawable.ic_mood_great,
-            R.drawable.bg_mood_great,
-            R.string.tvMoodGreatText
-        );
+        AWFUL(R.drawable.ic_mood_awful, R.string.tvMoodAwfulText, R.drawable.bg_mood_awful, R.id.btnMoodAwful),
+        BAD(R.drawable.ic_mood_bad, R.string.tvMoodBadText, R.drawable.bg_mood_bad, R.id.btnMoodBad),
+        NEUTRAL(R.drawable.ic_mood_neutral, R.string.tvMoodNeutralText, R.drawable.bg_mood_neutral, R.id.btnMoodNeutral),
+        GOOD(R.drawable.ic_mood_good, R.string.tvMoodGoodText, R.drawable.bg_mood_good, R.id.btnMoodGood),
+        GREAT(R.drawable.ic_mood_great, R.string.tvMoodGreatText, R.drawable.bg_mood_great, R.id.btnMoodGreat)
     }
 
     private lateinit var motion: MotionLayout
@@ -68,10 +45,12 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
     private lateinit var btnSend: ImageButton
     private lateinit var tvHeader: TextView
     private lateinit var tvLabel: TextView
+    private lateinit var tvTime: TextView
     private lateinit var viewModel: LogMoodViewModel
 
     private var selectedMood: Mood? = null
     private lateinit var selectedDate: LocalDate
+    private lateinit var selectedTime: LocalTime
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -82,46 +61,28 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
         btnSend = view.findViewById(R.id.btnSend)
         tvHeader = view.findViewById(R.id.tvHeaderSelected)
         tvLabel = view.findViewById(R.id.tvSelectedMoodLabel)
+        tvTime = view.findViewById(R.id.tvTime)
 
         val repository = MoodRepositoryImpl(requireContext())
         val factory = LogMoodViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[LogMoodViewModel::class.java]
 
         selectedDate = getSelectedDateFromArguments()
+        selectedTime = LocalTime.now().withSecond(0).withNano(0)
 
         fillDateTime(view, selectedDate)
+        setupTimePickerClick(view)
         setupButtons(view)
+
         motion.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionCompleted(layout: MotionLayout, currentId: Int) {
-                val btnClose = view?.findViewById<ImageButton>(R.id.btnClose)
-                if (currentId == R.id.start) {
-                    setLabelsVisible(true)
-
-                    ivCenter.isVisible = false
-                    etReason.isVisible = false
-                    btnSend.isVisible = false
-                    tvHeader.isVisible = false
-                    tvLabel.isVisible = false
-
-                    Mood.entries.forEach { entry ->
-                        view?.findViewById<ImageButton>(entry.btnId)?.apply {
-                            alpha = 1f
-                            isEnabled = true
-                        }
-                    }
-
-                    motion.setBackgroundResource(R.drawable.bg_gradient)
-                    btnClose?.setImageResource(R.drawable.ic_close)
-                    btnClose?.contentDescription = getString(R.string.closeButtonDesc)
-
-                    selectedMood = null
-                } else if (currentId == R.id.end) {
-                    btnClose?.setImageResource(R.drawable.ic_arrow_back)
+                if (currentId == R.id.end) {
+                    setLabelsVisible(false)
                 }
             }
 
             override fun onTransitionChange(
-                l: MotionLayout,
+                layout: MotionLayout,
                 startId: Int,
                 endId: Int,
                 progress: Float
@@ -130,13 +91,41 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
 
             override fun onTransitionStarted(l: MotionLayout, startId: Int, endId: Int) {}
             override fun onTransitionTrigger(
-                l: MotionLayout,
+                layout: MotionLayout,
                 triggerId: Int,
-                pos: Boolean,
-                v: Float
+                positive: Boolean,
+                progress: Float
             ) {
             }
         })
+    }
+
+    private fun setupTimePickerClick(view: View) {
+        view.findViewById<View>(R.id.timePickerContainer).setOnClickListener {
+            showTimePickerDialog()
+        }
+    }
+
+    private fun showTimePickerDialog() {
+        val is24HourFormat = android.text.format.DateFormat.is24HourFormat(requireContext())
+
+        val timePickerDialog = MaterialTimePicker.Builder()
+            .setTimeFormat(if (is24HourFormat) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H)
+            .setHour(selectedTime.hour)
+            .setMinute(selectedTime.minute)
+            .setTitleText(getString(R.string.tvTimeValue))
+            .build()
+
+        timePickerDialog.addOnPositiveButtonClickListener {
+            selectedTime = LocalTime.of(timePickerDialog.hour, timePickerDialog.minute)
+            updateTimeDisplay()
+        }
+
+        timePickerDialog.show(childFragmentManager, "TIME_PICKER")
+    }
+
+    private fun updateTimeDisplay() {
+        tvTime.text = selectedTime.format(DateTimeFormatter.ofPattern("HH:mm"))
     }
 
     private fun getSelectedDateFromArguments(): LocalDate {
@@ -153,33 +142,27 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
 
     private fun fillDateTime(root: View, date: LocalDate) {
         root.findViewById<TextView>(R.id.tvDate)
-            .text = date.format(DateTimeFormatter.ofPattern("dd MMMM, yyyy"))
-        root.findViewById<TextView>(R.id.tvTime)
-            .text = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))
+            .text = date.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
+        updateTimeDisplay()
     }
 
     private fun setupButtons(root: View) {
         Mood.entries.forEach { mood ->
-            root.findViewById<ImageButton>(mood.btnId).setOnClickListener {
+            root.findViewById<ImageButton>(mood.btnId)?.setOnClickListener {
                 onMoodChosen(mood)
             }
         }
 
         root.findViewById<ImageButton>(R.id.btnClose).setOnClickListener {
-            if (motion.currentState == R.id.end) {
-                motion.transitionToStart()
-            } else {
-                findNavController().navigateUp()
-            }
+            findNavController().navigateUp()
         }
 
         btnSend.setOnClickListener {
             selectedMood?.let { m ->
-                val time = LocalTime.now()
                 val moodValue = MoodValue.valueOf(m.name)
                 val reason = etReason.text.toString().takeIf { it.isNotBlank() }
 
-                viewModel.saveMood(selectedDate, time, moodValue, reason)
+                viewModel.saveMood(selectedDate, selectedTime, moodValue, reason)
 
                 Toast.makeText(requireContext(), "Saved!", Toast.LENGTH_SHORT).show()
             }

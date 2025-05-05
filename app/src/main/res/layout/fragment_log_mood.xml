@@ -22,7 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/white" />
 
-
     <TextView
         android:id="@+id/tvHeaderSelected"
         android:layout_width="wrap_content"
@@ -108,27 +107,46 @@
             app:layout_constraintStart_toEndOf="@+id/ivCalendar"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivClock"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="24dp"
-            android:contentDescription="@string/ivClockDesc"
-            android:src="@drawable/ic_clock"
-            app:layout_constraintBottom_toBottomOf="@+id/tvTime"
-            app:layout_constraintStart_toEndOf="@+id/tvDate"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvTime"
+        <LinearLayout
+            android:id="@+id/timePickerContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/tvTimeValue"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/ivClock"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+            app:layout_constraintStart_toEndOf="@+id/tvDate"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivClock"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@string/ivClockDesc"
+                android:src="@drawable/ic_clock" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:text="@string/tvTimeValue"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/ivTimeDropdown"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@string/ivSelectedTimeDesc"
+                android:src="@drawable/ic_arrow_down"
+                app:tint="@color/white" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton

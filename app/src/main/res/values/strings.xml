@@ -24,6 +24,7 @@
     <string name="ivClockDesc">clockIcon</string>
     <string name="ivSelectedMoodDesc">moodIcon</string>
     <string name="ivCatImageDesc">Cute cat image</string>
+    <string name="ivSelectedTimeDesc">Select time</string>
 
     <string name="awfulMoodButton">awfulMoodButton</string>
     <string name="badMoodButton">badMoodButton</string>
