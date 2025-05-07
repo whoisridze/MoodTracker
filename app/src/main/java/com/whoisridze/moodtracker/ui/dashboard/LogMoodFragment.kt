@@ -43,6 +43,7 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
     private lateinit var ivCenter: ImageView
     private lateinit var etReason: EditText
     private lateinit var btnSend: ImageButton
+    private lateinit var btnClose: ImageButton
     private lateinit var tvHeader: TextView
     private lateinit var tvLabel: TextView
     private lateinit var tvTime: TextView
@@ -51,6 +52,7 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
     private var selectedMood: Mood? = null
     private lateinit var selectedDate: LocalDate
     private lateinit var selectedTime: LocalTime
+    private var isMoodSelected = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,6 +61,7 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
         ivCenter = view.findViewById(R.id.ivSelectedMood)
         etReason = view.findViewById(R.id.etReason)
         btnSend = view.findViewById(R.id.btnSend)
+        btnClose = view.findViewById(R.id.btnClose)
         tvHeader = view.findViewById(R.id.tvHeaderSelected)
         tvLabel = view.findViewById(R.id.tvSelectedMoodLabel)
         tvTime = view.findViewById(R.id.tvTime)
@@ -153,8 +156,12 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
             }
         }
 
-        root.findViewById<ImageButton>(R.id.btnClose).setOnClickListener {
-            findNavController().navigateUp()
+        btnClose.setOnClickListener {
+            if (isMoodSelected) {
+                resetToMoodSelection()
+            } else {
+                findNavController().navigateUp()
+            }
         }
 
         btnSend.setOnClickListener {
@@ -170,6 +177,29 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
         }
     }
 
+    private fun resetToMoodSelection() {
+        isMoodSelected = false
+        selectedMood = null
+
+        btnClose.setImageResource(R.drawable.ic_close)
+
+        motion.transitionToStart()
+
+        Mood.entries.forEach { entry ->
+            view?.findViewById<ImageButton>(entry.btnId)?.isEnabled = true
+        }
+
+        ivCenter.isVisible = false
+        etReason.isVisible = false
+        btnSend.isVisible = false
+        tvHeader.isVisible = false
+        tvLabel.isVisible = false
+
+        etReason.setText("")
+
+        setLabelsVisible(true)
+    }
+
     private val moodLabels = listOf(
         R.id.tvMoodAwful, R.id.tvMoodBad, R.id.tvMoodNeutral,
         R.id.tvMoodGood, R.id.tvMoodGreat
@@ -183,6 +213,9 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
 
     private fun onMoodChosen(mood: Mood) {
         selectedMood = mood
+        isMoodSelected = true
+
+        btnClose.setImageResource(R.drawable.ic_arrow_back)
 
         ivCenter.setImageResource(mood.iconRes)
         tvLabel.text = getString(mood.labelRes)
