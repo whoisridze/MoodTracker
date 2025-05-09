@@ -2,9 +2,97 @@
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ConstraintSet android:id="@+id/start" />
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/tvTitle">
+            <PropertySet android:alpha="1" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/ivSelectedMood">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvHeaderSelected">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvSelectedMoodLabel">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodAwful">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodBad">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodNeutral">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodGood">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodGreat">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodAwful">
+            <PropertySet android:alpha="1" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodBad">
+            <PropertySet android:alpha="1" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodNeutral">
+            <PropertySet android:alpha="1" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodGood">
+            <PropertySet android:alpha="1" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodGreat">
+            <PropertySet android:alpha="1" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/etReason">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnSend">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+    </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@+id/tvTitle">
+            <PropertySet android:alpha="0" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
 
         <Constraint android:id="@+id/ivSelectedMood">
             <Layout
@@ -21,66 +109,99 @@
             <PropertySet android:alpha="1" />
         </Constraint>
 
-        <Constraint
-            android:id="@+id/btnMoodAwful"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/btnMoodBad"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/btnMoodNeutral"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/btnMoodGood"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/btnMoodGreat"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-
-        <Constraint
-            android:id="@+id/tvMoodAwful"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/tvMoodBad"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/tvMoodNeutral"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/tvMoodGood"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/tvMoodGreat"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/tvTitle"
-            android:visibility="gone"
-            app:visibilityMode="ignore" />
-
         <Constraint android:id="@+id/tvHeaderSelected">
             <PropertySet android:alpha="1" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
         </Constraint>
 
         <Constraint android:id="@+id/tvSelectedMoodLabel">
             <PropertySet android:alpha="1" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodAwful">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodBad">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodNeutral">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodGood">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/btnMoodGreat">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodAwful">
+            <PropertySet android:alpha="0" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodBad">
+            <PropertySet android:alpha="0" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodNeutral">
+            <PropertySet android:alpha="0" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodGood">
+            <PropertySet android:alpha="0" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tvMoodGreat">
+            <PropertySet android:alpha="0" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
         </Constraint>
 
         <Constraint android:id="@+id/etReason">
             <PropertySet android:alpha="1" />
+            <Layout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnSend"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMoodAwful"
+                app:layout_constraintVertical_bias="0.60" />
         </Constraint>
 
         <Constraint android:id="@+id/btnSend">
             <PropertySet android:alpha="1" />
+            <Layout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/etReason"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/etReason" />
         </Constraint>
 
         <Constraint android:id="@+id/dateTimeContainer">
@@ -92,12 +213,131 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSelectedMoodLabel" />
         </Constraint>
-
     </ConstraintSet>
 
     <Transition
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@id/start"
-        app:duration="450"
-        app:motionInterpolator="easeInOut" />
+        app:duration="700"
+        app:motionInterpolator="easeInOut">
+
+        <KeyFrameSet>
+            <KeyAttribute
+                app:framePosition="0"
+                app:motionTarget="@id/motionRoot"
+                android:alpha="1.0" />
+            <KeyAttribute
+                app:framePosition="50"
+                app:motionTarget="@id/motionRoot"
+                android:alpha="0.95" />
+            <KeyAttribute
+                app:framePosition="100"
+                app:motionTarget="@id/motionRoot"
+                android:alpha="1.0" />
+
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/tvTitle"
+                android:alpha="0" />
+
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/btnMoodAwful"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/btnMoodBad"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/btnMoodNeutral"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/btnMoodGood"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/btnMoodGreat"
+                android:alpha="0" />
+
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/tvMoodAwful"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/tvMoodBad"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/tvMoodNeutral"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/tvMoodGood"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="30"
+                app:motionTarget="@id/tvMoodGreat"
+                android:alpha="0" />
+
+            <KeyAttribute
+                app:framePosition="40"
+                app:motionTarget="@id/ivSelectedMood"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="70"
+                app:motionTarget="@id/ivSelectedMood"
+                android:alpha="1" />
+
+            <KeyAttribute
+                app:framePosition="50"
+                app:motionTarget="@id/tvHeaderSelected"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="70"
+                app:motionTarget="@id/tvHeaderSelected"
+                android:alpha="1" />
+
+            <KeyAttribute
+                app:framePosition="50"
+                app:motionTarget="@id/tvSelectedMoodLabel"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="70"
+                app:motionTarget="@id/tvSelectedMoodLabel"
+                android:alpha="1" />
+
+            <KeyAttribute
+                app:framePosition="70"
+                app:motionTarget="@id/etReason"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="100"
+                app:motionTarget="@id/etReason"
+                android:alpha="1" />
+
+            <KeyAttribute
+                app:framePosition="70"
+                app:motionTarget="@id/btnSend"
+                android:alpha="0" />
+            <KeyAttribute
+                app:framePosition="100"
+                app:motionTarget="@id/btnSend"
+                android:alpha="1" />
+
+            <KeyPosition
+                app:framePosition="70"
+                app:motionTarget="@id/etReason"
+                app:percentY="0.1"
+                app:keyPositionType="pathRelative" />
+
+            <KeyPosition
+                app:framePosition="70"
+                app:motionTarget="@id/btnSend"
+                app:percentY="0.1"
+                app:keyPositionType="pathRelative" />
+        </KeyFrameSet>
+    </Transition>
 </MotionScene>

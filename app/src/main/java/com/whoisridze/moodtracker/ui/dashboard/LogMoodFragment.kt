@@ -181,6 +181,8 @@ class LogMoodFragment : Fragment(R.layout.fragment_log_mood) {
         isMoodSelected = false
         selectedMood = null
 
+        motion.setBackgroundResource(R.drawable.bg_gradient)
+
         btnClose.setImageResource(R.drawable.ic_close)
 
         motion.transitionToStart()
