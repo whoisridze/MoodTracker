@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     android:fillViewport="true"
-    android:paddingBottom="82dp"
-    android:clipToPadding="false">
+    android:paddingBottom="82dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Your Mood Stats"
+            android:text="@string/tvStatsHeaderText"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -35,38 +35,83 @@
             app:cardElevation="0dp"
             app:layout_constraintTop_toBottomOf="@id/tvStatsHeader">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupPeriod"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                app:singleSelection="true">
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipWeek"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Week"
-                    android:checked="true" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPeriodWeek"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="@string/periodWeekButton"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:backgroundTint="#7798DFF4"
+                    app:cornerRadius="8dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipMonth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Month" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPeriodMonth"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="@string/periodMonthButton"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:backgroundTint="#33FFFFFF"
+                    app:cornerRadius="8dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipYear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Year" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPeriodYear"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="@string/periodYearButton"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:backgroundTint="#33FFFFFF"
+                    app:cornerRadius="8dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipAllTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="All Time" />
-            </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPeriodAllTime"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1.2"
+                    android:fontFamily="@font/nunito"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="@string/periodAllTimeButton"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:backgroundTint="#33FFFFFF"
+                    app:cornerRadius="8dp" />
+            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
@@ -74,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Mood Distribution"
+            android:text="@string/tvMoodDistributionText"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Mood Over Time"
+            android:text="@string/tvMoodOverTimeText"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Mood Insights"
+            android:text="@string/tvMoodInsightsText"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -145,8 +190,8 @@
             app:cardBackgroundColor="#33FFFFFF"
             app:cardCornerRadius="12dp"
             app:cardElevation="0dp"
-            app:layout_constraintTop_toBottomOf="@id/tvMoodInsights"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMoodInsights">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -157,7 +202,7 @@
                     android:id="@+id/tvMostFrequentMoodLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Most Frequent Mood"
+                    android:text="@string/tvFrequentMoodLabelText"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -167,7 +212,7 @@
                     android:id="@+id/tvMostFrequentMoodValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Good"
+                    android:text="@string/tvFrequentMoodValue"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -179,7 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Average Mood"
+                    android:text="@string/tvAverageMoodLabelText"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -189,7 +234,7 @@
                     android:id="@+id/tvAverageMoodValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3.7/5"
+                    android:text="@string/tvAverageMoodValue"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -201,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Current Streak"
+                    android:text="@string/tvCurrentStreakLabelText"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -211,7 +256,7 @@
                     android:id="@+id/tvCurrentStreakValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5 days"
+                    android:text="@string/tvCurrentStreakValue"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -223,7 +268,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Best Streak"
+                    android:text="@string/tvBestStreakLabelText"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -233,7 +278,7 @@
                     android:id="@+id/tvBestStreakValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12 days"
+                    android:text="@string/tvBestStreakValue"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -245,7 +290,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Total Entries"
+                    android:text="@string/tvTotalEntriesLabelText"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -255,7 +300,7 @@
                     android:id="@+id/tvTotalEntriesValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="28"
+                    android:text="@string/tvTotalEntriesValue"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"

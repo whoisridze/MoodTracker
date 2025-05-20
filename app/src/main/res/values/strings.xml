@@ -32,6 +32,10 @@
     <string name="goodMoodButton">goodMoodButton</string>
     <string name="greatMoodButton">greatMoodButton</string>
     <string name="viewMoodDataButton">View Mood Data</string>
+    <string name="periodWeekButton">Week</string>
+    <string name="periodMonthButton">Month</string>
+    <string name="periodYearButton">Year</string>
+    <string name="periodAllTimeButton">All Time</string>
     <string name="deleteMoodDataButton">Delete All Mood Data</string>
     <string name="closeButtonDesc">closeButtonDesc</string>
     <string name="sendButtonDesc">sendButtonDesc</string>
@@ -46,4 +50,24 @@
     <string name="no">No</string>
     <string name="moodData">Mood Data</string>
     <string name="close">Close</string>
+    <string name="noData">No data</string>
+    <string name="tvMoodDistributionText">Mood Distribution</string>
+    <string name="tvMoodOverTimeText">Mood Over Time</string>
+    <string name="tvMoodInsightsText">Mood Insights</string>
+    <string name="tvFrequentMoodLabelText">Most Frequent Mood</string>
+    <string name="tvFrequentMoodValue">Good</string>
+    <string name="tvAverageMoodLabelText">Average Mood</string>
+    <string name="tvAverageMoodValue">3.7/5</string>
+    <string name="tvCurrentStreakLabelText">Current Streak</string>
+    <string name="tvCurrentStreakValue">5 days</string>
+    <string name="tvBestStreakLabelText">Best Streak</string>
+    <string name="tvBestStreakValue">12 days</string>
+    <string name="tvTotalEntriesLabelText">Total Entries</string>
+    <string name="tvTotalEntriesValue">28</string>
+    <string name="tvStatsHeaderText">Your Mood Stats</string>
+
+    <plurals name="daysCount">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
 </resources>
