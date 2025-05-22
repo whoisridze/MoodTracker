@@ -385,13 +385,44 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
         lineChart.xAxis.apply {
             valueFormatter = IndexAxisValueFormatter(labels)
-            setLabelCount(labels.size, false)
+            granularity = 1f
             setAvoidFirstLastClipping(true)
 
-            if (timeline.size <= 3) {
-                lineChart.setVisibleXRangeMaximum(timeline.size.toFloat() + 0.5f)
+            when {
+                entries.size == 1 -> {
+                    labelCount = 1
+                    labelRotationAngle = 0f
+                }
+                entries.size <= 7 -> {
+                    labelCount = entries.size
+                    labelRotationAngle = 0f
+                }
+                else -> {
+                    labelCount = minOf(entries.size, 10)
+                    labelRotationAngle = 45f
+                }
             }
         }
+
+        lineChart.xAxis.axisMinimum = 0f
+
+        if (entries.size == 1) {
+            lineChart.xAxis.axisMinimum = -0.5f
+            lineChart.xAxis.axisMaximum = 0.5f
+            lineChart.setVisibleXRangeMinimum(1f)
+        } else {
+            lineChart.xAxis.axisMinimum = 0f
+            lineChart.xAxis.axisMaximum = (entries.size - 1) + 0f
+
+            if (entries.size <= 7) {
+                lineChart.setVisibleXRangeMaximum(7f)
+                lineChart.moveViewToX(0f)
+            } else {
+                lineChart.fitScreen()
+            }
+        }
+
+        lineChart.moveViewToX(0f)
 
         lineChart.notifyDataSetChanged()
         lineChart.invalidate()

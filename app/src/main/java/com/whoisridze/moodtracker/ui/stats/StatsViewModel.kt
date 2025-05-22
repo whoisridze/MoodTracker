@@ -75,7 +75,7 @@ class StatsViewModel(private val repository: MoodRepository) : ViewModel() {
         return when (_selectedPeriod.value) {
             StatsPeriod.WEEK -> entries.filter { ChronoUnit.DAYS.between(it.date, today) < 7 }
             StatsPeriod.MONTH -> entries.filter { ChronoUnit.DAYS.between(it.date, today) < 30 }
-            StatsPeriod.YEAR -> entries.filter { ChronoUnit.DAYS.between(it.date, today) < 365 }
+            StatsPeriod.YEAR -> entries.filter { it.date.year == today.year }
             StatsPeriod.ALL_TIME, null -> entries
         }
     }
