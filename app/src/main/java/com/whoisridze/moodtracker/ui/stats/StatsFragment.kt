@@ -1,6 +1,7 @@
 package com.whoisridze.moodtracker.ui.stats
 
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
@@ -98,7 +99,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
     }
 
     private fun setupBarChart() {
-        val typeface = ResourcesCompat.getFont(requireContext(), R.font.nunito)
+        val nunitoTypeface = ResourcesCompat.getFont(requireContext(), R.font.nunito)
 
         barChart.apply {
             description.isEnabled = false
@@ -112,21 +113,27 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
             setNoDataText("Record your mood to see statistics")
             setNoDataTextColor(Color.WHITE)
-            setNoDataTextTypeface(typeface)
+            setNoDataTextTypeface(nunitoTypeface)
 
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.granularity = 1f
             xAxis.setDrawGridLines(false)
-            xAxis.typeface = typeface
+            xAxis.typeface = nunitoTypeface
             xAxis.textColor = Color.WHITE
             xAxis.textSize = 12f
 
-            axisLeft.setDrawGridLines(false)
+            axisLeft.apply {
+                setDrawGridLines(false)
+                setDrawAxisLine(true)
+                axisLineWidth = 1f
+
+                axisMinimum = 0f
+                typeface = nunitoTypeface
+                textColor = Color.WHITE
+                textSize = 12f
+            }
+
             axisRight.isEnabled = false
-            axisLeft.axisMinimum = 0f
-            axisLeft.typeface = typeface
-            axisLeft.textColor = Color.WHITE
-            axisLeft.textSize = 12f
 
             setExtraOffsets(10f, 10f, 10f, 15f)
         }
@@ -139,25 +146,36 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
             description.isEnabled = false
             legend.isEnabled = false
             setDrawGridBackground(false)
-            isDoubleTapToZoomEnabled = false
-            setPinchZoom(false)
-            setScaleEnabled(false)
+
+            isDoubleTapToZoomEnabled = true
+            setPinchZoom(true)
+            setScaleEnabled(true)
+            isDragEnabled = true
+            setVisibleXRangeMaximum(10f)
 
             setNoDataText("Track your mood daily to see patterns")
             setNoDataTextColor(Color.WHITE)
             setNoDataTextTypeface(nunitoTypeface)
 
-            xAxis.position = XAxis.XAxisPosition.BOTTOM
-            xAxis.granularity = 1f
-            xAxis.setDrawGridLines(false)
-            xAxis.typeface = nunitoTypeface
-            xAxis.textColor = Color.WHITE
-            xAxis.textSize = 12f
-
-            setExtraOffsets(10f, 10f, 10f, 15f)
+            xAxis.apply {
+                position = XAxis.XAxisPosition.BOTTOM
+                granularity = 1f
+                setDrawGridLines(false)
+                typeface = nunitoTypeface
+                textColor = Color.WHITE
+                textSize = 11f
+                setDrawLabels(false)
+                labelRotationAngle = 30f
+                labelCount = 5
+                setAvoidFirstLastClipping(true)
+                spaceMin = 0.2f
+                spaceMax = 0.2f
+            }
 
             axisLeft.apply {
-                setDrawGridLines(false)
+                setDrawGridLines(true)
+                gridColor = Color.WHITE.apply { alpha = 1f }
+                gridLineWidth = 0.5f
                 typeface = nunitoTypeface
                 textColor = Color.WHITE
                 textSize = 12f
@@ -167,14 +185,24 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
                 valueFormatter = object : ValueFormatter() {
                     override fun getFormattedValue(value: Float): String {
-                        return value.toInt().toString()
+                        return if (value.toInt() in 1..5) {
+                            value.toInt().toString()
+                        } else {
+                            ""
+                        }
                     }
                 }
-
-                yOffset = -6f
             }
 
             axisRight.isEnabled = false
+
+            setExtraOffsets(15f, 15f, 15f, 15f)
+
+            animateX(1000)
+
+            val markerView = MoodMarkerView(requireContext(), R.layout.marker_mood_view)
+            markerView.chartView = this
+            marker = markerView
         }
     }
 
@@ -351,33 +379,35 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
                 null -> 3f
             }
 
-            entries.add(Entry(index.toFloat(), moodScore))
+            val entry = Entry(index.toFloat(), moodScore)
+            entry.data = date
+            entries.add(entry)
             labels.add(date.format(dateFormatter))
         }
 
         val dataSet = LineDataSet(entries, "Mood Trend")
         dataSet.apply {
-            color = ContextCompat.getColor(requireContext(), R.color.white)
-            lineWidth = 2f
+            color = Color.WHITE
+            lineWidth = 2.5f
             setDrawCircles(true)
             setCircleColor(Color.WHITE)
             circleRadius = 4f
-            setDrawValues(true)
-            valueTextColor = Color.WHITE
-            valueTextSize = 12f
-            val typeface = ResourcesCompat.getFont(requireContext(), R.font.nunito)
-            valueTypeface = typeface
-            mode = LineDataSet.Mode.LINEAR
+            circleHoleRadius = 2f
+            circleHoleColor = ContextCompat.getColor(requireContext(), R.color.paletteColor2)
 
-            valueFormatter = object : ValueFormatter() {
-                override fun getPointLabel(entry: Entry): String {
-                    return if (entry.x == 0f) "" else entry.y.toInt().toString()
-                }
+            setDrawFilled(true)
+            fillDrawable = GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM,
+                intArrayOf(
+                    Color.parseColor("#80FFFFFF"),
+                    Color.parseColor("#00FFFFFF")
+                )
+            )
 
-                override fun getFormattedValue(value: Float): String {
-                    return value.toInt().toString()
-                }
-            }
+            setDrawValues(false)
+            highLightColor = Color.WHITE
+            highlightLineWidth = 1f
+            mode = LineDataSet.Mode.CUBIC_BEZIER
         }
 
         val lineData = LineData(dataSet)
@@ -393,10 +423,12 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
                     labelCount = 1
                     labelRotationAngle = 0f
                 }
+
                 entries.size <= 7 -> {
                     labelCount = entries.size
                     labelRotationAngle = 0f
                 }
+
                 else -> {
                     labelCount = minOf(entries.size, 10)
                     labelRotationAngle = 45f

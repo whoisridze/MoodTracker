@@ -65,6 +65,8 @@
     <string name="tvTotalEntriesLabelText">Total Entries</string>
     <string name="tvTotalEntriesValue">28</string>
     <string name="tvStatsHeaderText">Your Mood Stats</string>
+    <string name="tvChartHintText">Tap on points to see details</string>
+    <string name="ivChartIcDesc">Chart information</string>
 
     <plurals name="daysCount">
         <item quantity="one">%d day</item>
