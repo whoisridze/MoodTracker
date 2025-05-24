@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -64,6 +65,11 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshData()
+    }
+
     private fun initViews(view: View) {
         btnPeriodWeek = view.findViewById(R.id.btnPeriodWeek)
         btnPeriodMonth = view.findViewById(R.id.btnPeriodMonth)
@@ -84,6 +90,38 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
         tvCurrentStreakValue = view.findViewById(R.id.tvCurrentStreakValue)
         tvBestStreakValue = view.findViewById(R.id.tvBestStreakValue)
         tvTotalEntriesValue = view.findViewById(R.id.tvTotalEntriesValue)
+    }
+
+    private fun setupButtonListeners() {
+        btnPeriodWeek.setOnClickListener {
+            updateButtonState(it as MaterialButton)
+            viewModel.setPeriod(StatsViewModel.StatsPeriod.WEEK)
+        }
+
+        btnPeriodMonth.setOnClickListener {
+            updateButtonState(it as MaterialButton)
+            viewModel.setPeriod(StatsViewModel.StatsPeriod.MONTH)
+        }
+
+        btnPeriodYear.setOnClickListener {
+            updateButtonState(it as MaterialButton)
+            viewModel.setPeriod(StatsViewModel.StatsPeriod.YEAR)
+        }
+
+        btnPeriodAllTime.setOnClickListener {
+            updateButtonState(it as MaterialButton)
+            viewModel.setPeriod(StatsViewModel.StatsPeriod.ALL_TIME)
+        }
+    }
+
+    private fun updateButtonState(selectedButton: MaterialButton) {
+        periodButtons.forEach { button ->
+            button.setBackgroundColor(inactiveButtonTint)
+            button.animate().alpha(0.7f).setDuration(300).start()
+        }
+
+        selectedButton.setBackgroundColor(activeButtonTint)
+        selectedButton.animate().alpha(1.0f).setDuration(300).start()
     }
 
     private fun setupCharts(view: View) {
@@ -135,6 +173,8 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
             axisRight.isEnabled = false
 
             setExtraOffsets(10f, 10f, 10f, 15f)
+
+            animateY(1000)
         }
     }
 
@@ -198,42 +238,12 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
             setExtraOffsets(15f, 15f, 15f, 15f)
 
-            animateX(1000)
+            animateX(1800, Easing.EaseInOutCubic)
 
             val markerView = MoodMarkerView(requireContext(), R.layout.marker_mood_view)
             markerView.chartView = this
             marker = markerView
         }
-    }
-
-    private fun setupButtonListeners() {
-        btnPeriodWeek.setOnClickListener {
-            updateButtonState(it as MaterialButton)
-            viewModel.setPeriod(StatsViewModel.StatsPeriod.WEEK)
-        }
-
-        btnPeriodMonth.setOnClickListener {
-            updateButtonState(it as MaterialButton)
-            viewModel.setPeriod(StatsViewModel.StatsPeriod.MONTH)
-        }
-
-        btnPeriodYear.setOnClickListener {
-            updateButtonState(it as MaterialButton)
-            viewModel.setPeriod(StatsViewModel.StatsPeriod.YEAR)
-        }
-
-        btnPeriodAllTime.setOnClickListener {
-            updateButtonState(it as MaterialButton)
-            viewModel.setPeriod(StatsViewModel.StatsPeriod.ALL_TIME)
-        }
-    }
-
-    private fun updateButtonState(selectedButton: MaterialButton) {
-        periodButtons.forEach { button ->
-            button.setBackgroundColor(inactiveButtonTint)
-        }
-
-        selectedButton.setBackgroundColor(activeButtonTint)
     }
 
     private fun observeViewModel() {
@@ -351,6 +361,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
         barChart.data = barData
         barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
         barChart.setFitBars(true)
+        barChart.animateY(1000)
         barChart.invalidate()
     }
 
@@ -456,12 +467,9 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
         lineChart.moveViewToX(0f)
 
+        lineChart.animateX(1000)
+
         lineChart.notifyDataSetChanged()
         lineChart.invalidate()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.refreshData()
     }
 }
