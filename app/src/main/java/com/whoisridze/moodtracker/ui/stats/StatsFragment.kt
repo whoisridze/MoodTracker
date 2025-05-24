@@ -126,7 +126,6 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
                 setDrawGridLines(false)
                 setDrawAxisLine(true)
                 axisLineWidth = 1f
-
                 axisMinimum = 0f
                 typeface = nunitoTypeface
                 textColor = Color.WHITE
@@ -170,6 +169,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
                 setAvoidFirstLastClipping(true)
                 spaceMin = 0.2f
                 spaceMax = 0.2f
+                axisLineWidth = 1f
             }
 
             axisLeft.apply {
@@ -179,7 +179,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
                 typeface = nunitoTypeface
                 textColor = Color.WHITE
                 textSize = 12f
-                axisMinimum = 0.5f
+                axisMinimum = 0.2f
                 axisMaximum = 5.5f
                 granularity = 1.0f
 
