@@ -67,6 +67,24 @@
     <string name="tvStatsHeaderText">Your Mood Stats</string>
     <string name="tvChartHintText">Tap on points to see details</string>
     <string name="ivChartIcDesc">Chart information</string>
+    <string name="tvWelcomeHeaderText">Welcome Back!</string>
+    <string name="tvCalendarSubtitleText">Select a day to log your mood</string>
+    <string name="tvStreakHeaderText">Current Streak</string>
+    <string name="ivStreakIconDesc">Streak flame</string>
+    <string name="tvStreakCountValue">7 days</string>
+    <string name="tvMotivationText">Keep going!</string>
+    <string name="tvBestStreakText">Best streak</string>
+    <string name="tvBestStreakCountValue">21 days</string>
+    <string name="tvMoodStatsHeaderText">Mood Stats</string>
+    <string name="tvLogginTimeHeaderText">When you usually log mood</string>
+    <string name="tvMorningPercent">25%</string>
+    <string name="tvMorningText">Morning</string>
+    <string name="tvAfternoonPercent">45%</string>
+    <string name="tvAfternoonText">Afternoon</string>
+    <string name="tvEveningPercent">30%</string>
+    <string name="tvEveningText">Evening</string>
+    <string name="tvRecentTrendHeaderText">Recent mood trend</string>
+    <string name="tvRecentTrendMessage">Your mood has been improving over the last 3 days</string>
 
     <plurals name="daysCount">
         <item quantity="one">%d day</item>
