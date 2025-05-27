@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#FF888888</color>
 
     <color name="paletteColor1">#8F87F1</color>
     <color name="paletteColor2">#C68EFD</color>
@@ -9,14 +10,4 @@
     <color name="paletteColor4">#FED2E2</color>
 
     <color name="defaultBtnColor">#3A3A3A</color>
-
-    <style name="CustomCalendarStyle" parent="Theme.AppCompat.Light">
-        <item name="colorAccent">@color/white</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">@color/white</item>
-        <item name="android:fontFamily">@font/nunito</item>
-        <item name="android:calendarViewShown">true</item>
-        <item name="android:weekNumberColor">#80FFFFFF</item>
-        <item name="android:colorControlActivated">@color/paletteColor1</item>
-    </style>
 </resources>

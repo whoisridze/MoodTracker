@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp">
+
+    <View
+        android:id="@+id/selectedBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_calendar_selected"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/calendarDayText"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        tools:text="22" />
+
+    <View
+        android:id="@+id/moodIndicator"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/bg_mood_indicator"
+        android:visibility="invisible" />
+
+</FrameLayout>
