@@ -7,11 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.whoisridze.moodtracker.domain.model.MoodEntry
 import com.whoisridze.moodtracker.domain.model.MoodValue
 import com.whoisridze.moodtracker.domain.repository.MoodRepository
+import com.whoisridze.moodtracker.domain.usecase.CalculateStreaksUseCase
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
-class StatsViewModel(private val repository: MoodRepository) : ViewModel() {
+class StatsViewModel(
+    private val repository: MoodRepository,
+    private val calculateStreaksUseCase: CalculateStreaksUseCase = CalculateStreaksUseCase()
+) : ViewModel() {
 
     enum class StatsPeriod {
         WEEK, MONTH, YEAR, ALL_TIME
@@ -128,38 +132,8 @@ class StatsViewModel(private val repository: MoodRepository) : ViewModel() {
     }
 
     private fun calculateStreaks(entries: List<MoodEntry>) {
-        if (entries.isEmpty()) {
-            _currentStreak.value = 0
-            _bestStreak.value = 0
-            return
-        }
-
-        val moodDates = entries.map { it.date }.toSet()
-
-        var currentStreak = 0
-        var date = LocalDate.now()
-
-        while (moodDates.contains(date)) {
-            currentStreak++
-            date = date.minusDays(1)
-        }
-        _currentStreak.value = currentStreak
-
-        val sortedDates = entries.map { it.date }.sorted().distinct()
-        var bestStreak = 0
-        var tempStreak = 1
-
-        for (i in 1 until sortedDates.size) {
-            val daysBetween = ChronoUnit.DAYS.between(sortedDates[i - 1], sortedDates[i])
-            if (daysBetween == 1L) {
-                tempStreak++
-            } else {
-                bestStreak = maxOf(bestStreak, tempStreak)
-                tempStreak = 1
-            }
-        }
-        bestStreak = maxOf(bestStreak, tempStreak)
-
-        _bestStreak.value = bestStreak
+        val streakResult = calculateStreaksUseCase.execute(entries)
+        _currentStreak.value = streakResult.currentStreak
+        _bestStreak.value = streakResult.bestStreak
     }
 }

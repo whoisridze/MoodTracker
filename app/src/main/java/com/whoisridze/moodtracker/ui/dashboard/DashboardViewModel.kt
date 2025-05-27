@@ -7,10 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.whoisridze.moodtracker.domain.model.MoodEntry
 import com.whoisridze.moodtracker.domain.model.MoodValue
 import com.whoisridze.moodtracker.domain.repository.MoodRepository
+import com.whoisridze.moodtracker.domain.usecase.CalculateStreaksUseCase
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
-class DashboardViewModel(private val repository: MoodRepository) : ViewModel() {
+class DashboardViewModel(
+    private val repository: MoodRepository,
+    private val calculateStreaksUseCase: CalculateStreaksUseCase = CalculateStreaksUseCase()
+) : ViewModel() {
 
     private val _moodDates = MutableLiveData<Set<LocalDate>>()
     val moodDates: LiveData<Set<LocalDate>> = _moodDates
@@ -27,6 +31,12 @@ class DashboardViewModel(private val repository: MoodRepository) : ViewModel() {
     private val _recentTrendMessage = MutableLiveData<String>()
     val recentTrendMessage: LiveData<String> = _recentTrendMessage
 
+    private val _currentStreak = MutableLiveData<Int>()
+    val currentStreak: LiveData<Int> = _currentStreak
+
+    private val _bestStreak = MutableLiveData<Int>()
+    val bestStreak: LiveData<Int> = _bestStreak
+
     init {
         loadMoodData()
     }
@@ -39,6 +49,10 @@ class DashboardViewModel(private val repository: MoodRepository) : ViewModel() {
 
             calculateTimeOfDayPercentages(entries)
             analyzeRecentMoodTrend(entries)
+
+            val streakResult = calculateStreaksUseCase.execute(entries)
+            _currentStreak.postValue(streakResult.currentStreak)
+            _bestStreak.postValue(streakResult.bestStreak)
         }
     }
 

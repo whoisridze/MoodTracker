@@ -62,7 +62,6 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
         setupCharts(view)
         setupButtonListeners()
         observeViewModel()
-
     }
 
     override fun onResume() {

@@ -35,6 +35,9 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private lateinit var tvRecentTrendMessage: TextView
 
+    private lateinit var tvStreakCount: TextView
+    private lateinit var tvBestStreakCount: TextView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -45,6 +48,9 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         tvEveningPercent = view.findViewById(R.id.tvEveningPercent)
 
         tvRecentTrendMessage = view.findViewById(R.id.tvRecentTrendMessage)
+
+        tvStreakCount = view.findViewById(R.id.tvStreakCount)
+        tvBestStreakCount = view.findViewById(R.id.tvBestStreakCount)
 
         val factory = DashboardViewModelFactory(MoodRepositoryImpl(requireContext()))
         viewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
@@ -69,6 +75,18 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
         viewModel.eveningPercentage.observe(viewLifecycleOwner) { percentage ->
             tvEveningPercent.text = getString(R.string.percentageFormat, percentage)
+        }
+
+        viewModel.currentStreak.observe(viewLifecycleOwner) { streak ->
+            tvStreakCount.text = resources.getQuantityString(
+                R.plurals.daysCount, streak, streak
+            )
+        }
+
+        viewModel.bestStreak.observe(viewLifecycleOwner) { streak ->
+            tvBestStreakCount.text = resources.getQuantityString(
+                R.plurals.daysCount, streak, streak
+            )
         }
 
         val currentMonth = YearMonth.now()
