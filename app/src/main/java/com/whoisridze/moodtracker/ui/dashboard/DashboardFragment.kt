@@ -33,6 +33,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private lateinit var tvAfternoonPercent: TextView
     private lateinit var tvEveningPercent: TextView
 
+    private lateinit var tvRecentTrendMessage: TextView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,6 +44,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         tvAfternoonPercent = view.findViewById(R.id.tvAfternoonPercent)
         tvEveningPercent = view.findViewById(R.id.tvEveningPercent)
 
+        tvRecentTrendMessage = view.findViewById(R.id.tvRecentTrendMessage)
+
         val factory = DashboardViewModelFactory(MoodRepositoryImpl(requireContext()))
         viewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
 
@@ -49,6 +53,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             moodEntries.clear()
             moodEntries.addAll(dates)
             calendarView.notifyCalendarChanged()
+        }
+
+        viewModel.recentTrendMessage.observe(viewLifecycleOwner) { message ->
+            tvRecentTrendMessage.text = message
         }
 
         viewModel.morningPercentage.observe(viewLifecycleOwner) { percentage ->
