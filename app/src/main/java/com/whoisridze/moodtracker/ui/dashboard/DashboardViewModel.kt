@@ -37,6 +37,9 @@ class DashboardViewModel(
     private val _bestStreak = MutableLiveData<Int>()
     val bestStreak: LiveData<Int> = _bestStreak
 
+    private val _motivationalMessage = MutableLiveData<String>()
+    val motivationalMessage: LiveData<String> = _motivationalMessage
+
     init {
         loadMoodData()
     }
@@ -53,6 +56,7 @@ class DashboardViewModel(
             val streakResult = calculateStreaksUseCase.execute(entries)
             _currentStreak.postValue(streakResult.currentStreak)
             _bestStreak.postValue(streakResult.bestStreak)
+            _motivationalMessage.postValue(generateMotivationalMessage(streakResult.currentStreak))
         }
     }
 
@@ -171,6 +175,22 @@ class DashboardViewModel(
             MoodValue.NEUTRAL -> 3.0
             MoodValue.GOOD -> 4.0
             MoodValue.GREAT -> 5.0
+        }
+    }
+
+    private fun generateMotivationalMessage(streak: Int): String {
+        return when {
+            streak == 0 -> "Start your streak today!"
+            streak == 1 -> "Great start! Keep going!"
+            streak in 2..3 -> "You're building momentum!"
+            streak in 4..6 -> "Impressive consistency!"
+            streak == 7 -> "A full week - amazing work!"
+            streak in 8..13 -> "You're making this a habit!"
+            streak in 14..20 -> "Two weeks strong! Outstanding!"
+            streak in 21..29 -> "You're truly dedicated!"
+            streak == 30 -> "A whole month! Incredible!"
+            streak > 30 -> "You're unstoppable! ${streak} days!"
+            else -> "Keep tracking your moods!"
         }
     }
 

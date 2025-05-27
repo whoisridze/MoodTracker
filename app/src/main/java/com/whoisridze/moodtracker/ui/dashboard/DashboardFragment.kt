@@ -38,6 +38,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private lateinit var tvStreakCount: TextView
     private lateinit var tvBestStreakCount: TextView
 
+    private lateinit var tvMotivation: TextView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,6 +53,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
         tvStreakCount = view.findViewById(R.id.tvStreakCount)
         tvBestStreakCount = view.findViewById(R.id.tvBestStreakCount)
+
+        tvMotivation = view.findViewById(R.id.tvMotivation)
 
         val factory = DashboardViewModelFactory(MoodRepositoryImpl(requireContext()))
         viewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
@@ -87,6 +91,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             tvBestStreakCount.text = resources.getQuantityString(
                 R.plurals.daysCount, streak, streak
             )
+        }
+
+        viewModel.motivationalMessage.observe(viewLifecycleOwner) { message ->
+            tvMotivation.text = message
         }
 
         val currentMonth = YearMonth.now()

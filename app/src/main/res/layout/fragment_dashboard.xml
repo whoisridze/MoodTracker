@@ -113,6 +113,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvMotivation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito"
