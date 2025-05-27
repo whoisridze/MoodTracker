@@ -29,10 +29,18 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private val moodEntries = mutableSetOf<LocalDate>()
     private lateinit var viewModel: DashboardViewModel
 
+    private lateinit var tvMorningPercent: TextView
+    private lateinit var tvAfternoonPercent: TextView
+    private lateinit var tvEveningPercent: TextView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         calendarView = view.findViewById(R.id.calendarView)
+
+        tvMorningPercent = view.findViewById(R.id.tvMorningPercent)
+        tvAfternoonPercent = view.findViewById(R.id.tvAfternoonPercent)
+        tvEveningPercent = view.findViewById(R.id.tvEveningPercent)
 
         val factory = DashboardViewModelFactory(MoodRepositoryImpl(requireContext()))
         viewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
@@ -41,6 +49,18 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             moodEntries.clear()
             moodEntries.addAll(dates)
             calendarView.notifyCalendarChanged()
+        }
+
+        viewModel.morningPercentage.observe(viewLifecycleOwner) { percentage ->
+            tvMorningPercent.text = getString(R.string.percentageFormat, percentage)
+        }
+
+        viewModel.afternoonPercentage.observe(viewLifecycleOwner) { percentage ->
+            tvAfternoonPercent.text = getString(R.string.percentageFormat, percentage)
+        }
+
+        viewModel.eveningPercentage.observe(viewLifecycleOwner) { percentage ->
+            tvEveningPercent.text = getString(R.string.percentageFormat, percentage)
         }
 
         val currentMonth = YearMonth.now()
