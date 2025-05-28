@@ -89,12 +89,11 @@
                 android:padding="16dp">
 
                 <!-- TODO: custom fire icon -->
-                <ImageView
+                <com.whoisridze.moodtracker.ui.custom.StreakFireView
                     android:id="@+id/ivStreakIcon"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:contentDescription="@string/ivStreakIconDesc"
-                    android:src="@drawable/ic_stats" />
+                    android:contentDescription="@string/ivStreakIconDesc" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"

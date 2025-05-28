@@ -19,6 +19,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.whoisridze.moodtracker.data.repository.MoodRepositoryImpl
+import com.whoisridze.moodtracker.ui.custom.StreakFireView
 import java.time.format.TextStyle
 import java.util.Locale
 
@@ -40,6 +41,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private lateinit var tvMotivation: TextView
 
+    private lateinit var streakFireView: StreakFireView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -55,6 +58,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         tvBestStreakCount = view.findViewById(R.id.tvBestStreakCount)
 
         tvMotivation = view.findViewById(R.id.tvMotivation)
+
+        streakFireView = view.findViewById(R.id.ivStreakIcon)
 
         val factory = DashboardViewModelFactory(MoodRepositoryImpl(requireContext()))
         viewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
@@ -95,6 +100,13 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
         viewModel.motivationalMessage.observe(viewLifecycleOwner) { message ->
             tvMotivation.text = message
+        }
+
+        viewModel.currentStreak.observe(viewLifecycleOwner) { streak ->
+            tvStreakCount.text = resources.getQuantityString(
+                R.plurals.daysCount, streak, streak
+            )
+            streakFireView.setStreak(streak)
         }
 
         val currentMonth = YearMonth.now()
