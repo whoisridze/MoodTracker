@@ -7,14 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.whoisridze.moodtracker.domain.model.MoodEntry
 import com.whoisridze.moodtracker.domain.model.MoodValue
 import com.whoisridze.moodtracker.domain.repository.MoodRepository
-import com.whoisridze.moodtracker.domain.usecase.CalculateStreaksUseCase
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
 class StatsViewModel(
     private val repository: MoodRepository,
-    private val calculateStreaksUseCase: CalculateStreaksUseCase = CalculateStreaksUseCase()
 ) : ViewModel() {
 
     enum class StatsPeriod {
@@ -69,7 +67,7 @@ class StatsViewModel(
             createMoodTimeline(filteredEntries)
             findMostFrequentMood(filteredEntries)
             calculateAverageMood(filteredEntries)
-            calculateStreaks(allEntries)
+            loadStreaks()
             _totalEntries.value = filteredEntries.size
         }
     }
@@ -131,9 +129,10 @@ class StatsViewModel(
         }
     }
 
-    private fun calculateStreaks(entries: List<MoodEntry>) {
-        val streakResult = calculateStreaksUseCase.execute(entries)
-        _currentStreak.value = streakResult.currentStreak
-        _bestStreak.value = streakResult.bestStreak
+    private fun loadStreaks() {
+        viewModelScope.launch {
+            _currentStreak.value = repository.getCurrentStreak()
+            _bestStreak.value = repository.getBestStreak()
+        }
     }
 }

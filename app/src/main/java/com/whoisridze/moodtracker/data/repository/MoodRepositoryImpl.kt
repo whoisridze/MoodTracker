@@ -8,6 +8,7 @@ import com.whoisridze.moodtracker.data.local.gson.LocalDateAdapter
 import com.whoisridze.moodtracker.data.local.gson.LocalTimeAdapter
 import com.whoisridze.moodtracker.domain.model.MoodEntry
 import com.whoisridze.moodtracker.domain.repository.MoodRepository
+import com.whoisridze.moodtracker.domain.usecase.CalculateStreaksUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
@@ -45,9 +46,19 @@ class MoodRepositoryImpl(private val context: Context) : MoodRepository {
                 } else {
                     emptyList()
                 }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 emptyList()
             }
         }
+    }
+
+    private val streaksUseCase = CalculateStreaksUseCase()
+
+    override suspend fun getCurrentStreak(): Int {
+        return streaksUseCase.execute(getMoods()).currentStreak
+    }
+
+    override suspend fun getBestStreak(): Int {
+        return streaksUseCase.execute(getMoods()).bestStreak
     }
 }
