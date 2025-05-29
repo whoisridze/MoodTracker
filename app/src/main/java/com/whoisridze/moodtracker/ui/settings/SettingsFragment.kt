@@ -1,7 +1,9 @@
 package com.whoisridze.moodtracker.ui.settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
@@ -11,6 +13,7 @@ import com.whoisridze.moodtracker.data.repository.MoodRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.core.net.toUri
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
@@ -23,6 +26,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
         view.findViewById<MaterialButton>(R.id.btnDeleteJson).setOnClickListener {
             confirmDeleteJson()
+        }
+
+        view.findViewById<TextView>(R.id.tvDeveloperName).setOnClickListener {
+            val uri = "https://linktr.ee/r1dze".toUri()
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
         }
     }
 

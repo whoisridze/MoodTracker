@@ -19,38 +19,6 @@
     <string name="tvDataManagement">Data Management</string>
     <string name="tvComingSoon">Coming Soon!</string>
     <string name="tvUnderDevelopment">Social features are under development</string>
-
-    <string name="ivCalendarDesc">calendarIcon</string>
-    <string name="ivClockDesc">clockIcon</string>
-    <string name="ivSelectedMoodDesc">moodIcon</string>
-    <string name="ivCatImageDesc">Cute cat image</string>
-    <string name="ivSelectedTimeDesc">Select time</string>
-
-    <string name="awfulMoodButton">awfulMoodButton</string>
-    <string name="badMoodButton">badMoodButton</string>
-    <string name="neutralMoodButton">neutralMoodButton</string>
-    <string name="goodMoodButton">goodMoodButton</string>
-    <string name="greatMoodButton">greatMoodButton</string>
-    <string name="viewMoodDataButton">View Mood Data</string>
-    <string name="periodWeekButton">Week</string>
-    <string name="periodMonthButton">Month</string>
-    <string name="periodYearButton">Year</string>
-    <string name="periodAllTimeButton">All Time</string>
-    <string name="deleteMoodDataButton">Delete All Mood Data</string>
-    <string name="closeButtonDesc">closeButtonDesc</string>
-    <string name="sendButtonDesc">sendButtonDesc</string>
-
-    <string name="etReasonHint">Add a reason (optional)</string>
-    <string name="tvSelectedMoodText">MoodName</string>
-
-    <string name="noDataFound">No mood data found</string>
-    <string name="dataDeleted">All mood data has been deleted</string>
-    <string name="confirmDelete">Are you sure you want to delete all mood data?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="moodData">Mood Data</string>
-    <string name="close">Close</string>
-    <string name="noData">No data</string>
     <string name="tvMoodDistributionText">Mood Distribution</string>
     <string name="tvMoodOverTimeText">Mood Over Time</string>
     <string name="tvMoodInsightsText">Mood Insights</string>
@@ -85,6 +53,54 @@
     <string name="tvEveningText">Evening</string>
     <string name="tvRecentTrendHeaderText">Recent mood trend</string>
     <string name="tvRecentTrendMessage">Your mood has been improving over the last 3 days</string>
+    <string name="tvSettingsHeaderText">Settings</string>
+    <string name="tvDataManagementHeaderText">Data Management</string>
+    <string name="tvManageDataText">Manage your mood tracking data</string>
+    <string name="tvAboutHeaderText">About</string>
+    <string name="tvMoodTracker">Mood Tracker</string>
+    <string name="tvVersionValue">Version 1.0.0</string>
+    <string name="tvDevelopedByText">Developed by</string>
+    <string name="tvMe">whoisridze</string>
+    <string name="tvLibraries">Libraries</string>
+    <string name="tvLibrariesContent">• MPAndroidChart\n• Kizitonwose Calendar</string>
+    <string name="tvIcons">Icons</string>
+    <string name="tvIconsContent">Material Design Icons</string>
+    <string name="tvCopyrightText">© 2025 Mood Tracker. All rights reserved.</string>
+
+    <string name="ivCalendarDesc">calendarIcon</string>
+    <string name="ivClockDesc">clockIcon</string>
+    <string name="ivSelectedMoodDesc">moodIcon</string>
+    <string name="ivCatImageDesc">Cute cat image</string>
+    <string name="ivSelectedTimeDesc">Select time</string>
+
+    <string name="awfulMoodButton">awfulMoodButton</string>
+    <string name="badMoodButton">badMoodButton</string>
+    <string name="neutralMoodButton">neutralMoodButton</string>
+    <string name="goodMoodButton">goodMoodButton</string>
+    <string name="greatMoodButton">greatMoodButton</string>
+    <string name="viewMoodDataButton">View Mood Data</string>
+    <string name="periodWeekButton">Week</string>
+    <string name="periodMonthButton">Month</string>
+    <string name="periodYearButton">Year</string>
+    <string name="periodAllTimeButton">All Time</string>
+    <string name="deleteMoodDataButton">Delete All Mood Data</string>
+    <string name="viewDataBtn">View Data</string>
+    <string name="deleteDataBtn">Delete All Data</string>
+    <string name="closeButtonDesc">closeButtonDesc</string>
+    <string name="sendButtonDesc">sendButtonDesc</string>
+
+    <string name="etReasonHint">Add a reason (optional)</string>
+    <string name="tvSelectedMoodText">MoodName</string>
+
+    <string name="noDataFound">No mood data found</string>
+    <string name="dataDeleted">All mood data has been deleted</string>
+    <string name="confirmDelete">Are you sure you want to delete all mood data?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="moodData">Mood Data</string>
+    <string name="close">Close</string>
+    <string name="noData">No data</string>
+
 
     <plurals name="daysCount">
         <item quantity="one">%d day</item>
