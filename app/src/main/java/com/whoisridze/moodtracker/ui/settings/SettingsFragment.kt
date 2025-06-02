@@ -20,6 +20,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        updateDeleteButtonState()
+
         view.findViewById<MaterialButton>(R.id.btnViewJson).setOnClickListener {
             showJsonContents()
         }
@@ -82,9 +84,22 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         val fileName = "mood_entries.json"
         requireContext().deleteFile(fileName)
 
+        updateDeleteButtonState()
+
         MaterialAlertDialogBuilder(requireContext())
             .setMessage(R.string.dataDeleted)
             .setPositiveButton(R.string.close, null)
             .show()
+    }
+
+    private fun updateDeleteButtonState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val repository = MoodRepositoryImpl(requireContext())
+            val moods = withContext(Dispatchers.IO) {
+                repository.getMoods()
+            }
+
+            view?.findViewById<MaterialButton>(R.id.btnDeleteJson)?.isEnabled = moods.isNotEmpty()
+        }
     }
 }

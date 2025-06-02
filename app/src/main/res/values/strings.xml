@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MoodTracker</string>
+    <string name="app_name">Mood Tracker</string>
 
     <string name="tvWelcomeText">Welcome Back</string>
     <string name="tvStreakText">Streak</string>
